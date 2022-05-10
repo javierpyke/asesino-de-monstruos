@@ -22,25 +22,25 @@ new Vue({
             let ataque = this.calcularHeridas(this.rangoAtaque);
             this.saludMonstruo -= ataque;
 
-            if(this.verificarGanador()){
-                return
-            }
             this.registrarEvento({esJugador : true, text:`EL JUGADOR GOLPEA AL MONSTRUO POR ${ataque}`})
 
+            if(!this.verificarGanador()){
+                this.ataqueDelMonstruo();
+            }
 
-            this.ataqueDelMonstruo();
+            
         },
 
         ataqueEspecial: function () {
             let ataque = this.calcularHeridas(this.rangoAtaqueEspecial);
             this.saludMonstruo -= ataque;
 
-            if(this.verificarGanador()){
-                return
-            }
             this.registrarEvento({esJugador : true, text:`EL JUGADOR GOLPEA DURAMENTE AL MONSTRUO POR ${ataque}`})
 
-            this.ataqueDelMonstruo();
+            if(!this.verificarGanador()){
+                this.ataqueDelMonstruo();
+            }
+            
         },
 
         curar: function () {
